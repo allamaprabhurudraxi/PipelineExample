@@ -3,7 +3,7 @@ pipeline{
 	stages{
 	   stage('Test'){
 		steps{
-			sh 'echo "Fail!"; exit 1'
+			sh 'echo "Fail!"; exit 0'
 }
 }
 }
@@ -13,7 +13,7 @@ post{
 	}
 	success{
 	 echo 'This will run only if successfull'
-	{
+	}
 	failure{
 		echo 'This will run only if failed'
 	}

@@ -1,29 +1,30 @@
-pipeline{
-agent any
-stages{
-stage('No-op'){
-steps{
-sh 'ls'
+pipeline {
+    agent any
+    stages {
+        /* "Build" and "Test" stages omitted */
+
+        stage('Deploy - Staging') {
+            steps {
+                sh './deploy staging'
+                sh './run-smoke-tests'
+            }
+        }
+
+        stage('Sanity check') {
+            steps {
+                input "Does the staging environment look ok?"
+            }
+        }
+
+        stage('Deploy - Production') {
+            steps {
+                sh './deploy production'
+            }
+        }
+    }
 }
-}
-}
-post{
-always{
-echo 'One way or another, I have finished'
-deleteDir()
-}
-success{
-echo 'I succeeededd!'
-}
-unstable{
-echo 'I am unstable:/'
-}
-failure{
-echo 'I failed:('
-}
-changed {
-echo 'Things were different before....'
-}
-}
-}
+
+
+
+
 

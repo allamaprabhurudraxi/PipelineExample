@@ -1,4 +1,3 @@
-def mvnHome="name: 'Maven_3.6.2', type: 'maven'"
 pipeline {
     agent any
     stages {
@@ -13,7 +12,7 @@ pipeline {
         stage('pre build step') {
             steps {
                
-                sh "${mvnHome}/bin/mvn clean package sonar:sonar"
+                sh "tool name: 'Maven_3.6.2', type: 'maven'/bin/mvn clean package sonar:sonar"
 
             }
         }

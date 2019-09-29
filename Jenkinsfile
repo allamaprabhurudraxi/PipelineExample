@@ -11,7 +11,7 @@ pipeline {
 
         stage('pre build step') {
             steps {
-                sh 'mvn clean package sonar:sonar'
+                sh 'mvn -B -DskipTests clean package sonar:sonar'
             }
         }
 

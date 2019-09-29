@@ -1,4 +1,4 @@
-def mvnHome="tool name: 'Maven_3.6.2', type: 'maven'"
+def mvnHome="name: 'Maven_3.6.2', type: 'maven'"
 pipeline {
     agent any
     stages {

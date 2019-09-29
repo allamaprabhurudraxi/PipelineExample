@@ -3,21 +3,29 @@ pipeline {
     stages {
         /* "Build" and "Test" stages omitted */
 
-        stage('Deploy - Staging') {
+        stage('Build') {
             steps {
-                echo 'staging'
+                git url : 'https://github.com/allamaprabhurudraxi/springboot.git'
             }
         }
 
-        stage('Sanity check') {
+        stage('pre build step') {
             steps {
-                input "Does the staging environment look ok?"
+                sh 'mvn clean package sonar:sonar'
             }
         }
 
-        stage('Deploy - Production') {
+        stage('maven_goals_and_options') {
             steps {
-                echo 'production'
+                sh '/opt/maven/bin/mvn clean deploy'
+            }
+        }
+        stage('deploy_war_file_to_tomcat_container') {
+            steps {
+                deploy adapters: [tomcat9(credentialsId: '93dcbd52-a3a3-4808-b8e3-8b301ad390db',
+                                      path: '', url: 'http://52.14.123.165:8090/')], 
+                    contextPath: '/demo', onFailure: false, war: '**/*.war'
+
             }
         }
     }

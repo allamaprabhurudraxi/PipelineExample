@@ -11,7 +11,9 @@ pipeline {
 
         stage('pre build step') {
             steps {
-                sh 'mvn -B -DskipTests clean package sonar:sonar'
+                def mvnHome= tool name: 'Maven_3.6.2', type: 'maven'
+                sh "${mvnHome}/bin/mvn clean package sonar:sonar"
+
             }
         }
 

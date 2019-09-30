@@ -24,7 +24,7 @@ pipeline {
         }
         stage('deploy_war_file_to_tomcat_container') {
             steps {
-                sh "env SERVER.PORT=8090 nohup java -jar ./webapps/INGSuite.jar &"
+                sh "java -jar INGSuite.jar"
 
             }
         }

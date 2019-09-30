@@ -12,13 +12,13 @@ pipeline {
 
         stage('maven_goals_and_options') {
             steps {
-                sh "/opt/maven/bin/mvn clean deploy sonar:sonar"
+                sh "sudo /opt/maven/bin/mvn clean deploy sonar:sonar"
             }
         }
         
         stage('deploy_war_file_to_tomcat_container') {
             steps {
-                sh "java -jar $WORKSPACE/target/INGSuite.jar"
+                sh "sudo java -jar $WORKSPACE/target/INGSuite.jar"
 
             }
         }

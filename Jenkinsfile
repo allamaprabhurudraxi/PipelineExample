@@ -12,7 +12,7 @@ pipeline {
         stage('pre build step') {
             steps {
                
-                sh " /opt/maven/bin/mvn clean package sonar:sonar"
+                sh " /opt/maven/bin/mvn sonar:sonar"
 
             }
         }
@@ -26,7 +26,7 @@ pipeline {
             steps {
                 deploy adapters: [tomcat9(credentialsId: '93dcbd52-a3a3-4808-b8e3-8b301ad390db',
                                       path: '', url: 'http://18.224.64.187:8090/')], 
-                    contextPath: '/demo', onFailure: false, war: '**/*.jar'
+                    contextPath: '/demo', onFailure: false, war: '**/*.war'
 
             }
         }

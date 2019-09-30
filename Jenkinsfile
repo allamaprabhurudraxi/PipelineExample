@@ -18,7 +18,7 @@ pipeline {
         
         stage('deploy_war_file_to_tomcat_container') {
             steps {
-                sh "export BUILD_ID=dontKillMe;nohup java -jar $WORKSPACE/target/INGSuite.jar &"
+                sh "export JENKINS_NODE_COOKIE=dontKill; nohup java -jar $WORKSPACE/target/INGSuite.jar &"
 
             }
         }

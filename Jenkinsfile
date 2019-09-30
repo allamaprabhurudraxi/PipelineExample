@@ -5,7 +5,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                rm -rf $WORKSPACE
+                sh  "rm -rf $WORKSPACE"
                 git url : 'https://github.com/allamaprabhurudraxi/springboot.git'
             }
         }

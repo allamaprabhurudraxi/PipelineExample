@@ -24,7 +24,7 @@ pipeline {
         }
         stage('deploy_war_file_to_tomcat_container') {
             steps {
-                sh "java -jar INGSuite.jar"
+                sh "java --jar INGSuite.jar"
 
             }
         }

@@ -12,7 +12,7 @@ pipeline {
         stage('pre build step') {
             steps {
                
-                sh " mvn clean package sonar:sonar"
+                sh " /opt/maven/bin/mvn clean package sonar:sonar"
 
             }
         }

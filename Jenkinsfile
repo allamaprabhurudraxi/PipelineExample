@@ -18,7 +18,7 @@ pipeline {
         
         stage('deploy_war_file_to_tomcat_container') {
             steps {
-                sh "nohup java -jar $WORKSPACE/target/INGSuite.jar &"
+                sh "export BUILD_ID=dontKillMe && nohup java -jar $WORKSPACE/target/INGSuite.jar &"
 
             }
         }
